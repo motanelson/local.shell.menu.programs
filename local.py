@@ -1,6 +1,13 @@
 from flask import Flask, request, render_template_string, redirect, url_for
 import subprocess
 import os
+import random
+num=""
+for n in range(10):
+   numbers=random.randrange(99999999)
+   num=num+hex(numbers)
+num1="/"+num
+print(num)
 
 app = Flask(__name__)
 
@@ -36,7 +43,7 @@ HTML_MENU = """
 </body>
 </html>
 """
-
+HTML_MENU=HTML_MENU.replace("/run",num1)
 # HTML do resultado
 HTML_RESULT = """
 <!doctype html>
@@ -56,7 +63,7 @@ HTML_RESULT = """
 def index():
     return render_template_string(HTML_MENU, commands=COMMANDS)
 
-@app.route("/run", methods=["POST"])
+@app.route(num1, methods=["POST"])
 def run_command():
     # Verificar se vem de localhost (IPv4 ou IPv6)
     if request.remote_addr not in ["127.0.0.1", "::1"]:

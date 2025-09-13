@@ -30,12 +30,19 @@ HTML_MENU = """
 <html>
 <head>
     <title>Shell Local</title>
+<style>
+.wrapper {
+    text-align: center;
+}
+
+</style>
 </head>
-<body style="background-color: yellow; color: black; font-family: monospace;">
-    <h2>Menu de Comandos</h2>
+<body style="background-color: yellow; text-align: center; color: black; font-family: monospace;margin: 0 auto">
+    <h2 style="background-color: yellow; text-align: center; color: black; font-family: monospace;margin: 0 auto">Menu de Comandos</h2>
     <form method="POST" action="/run">
         {% for cmd in commands %}
-            <button type="submit" name="cmd" value="{{ cmd }}" style="display:block; margin:5px; padding:10px;">
+            <button type="submit" name="cmd" value="{{ cmd }}" style="display:block;  padding:10px;margin: 0 auto;
+">
                 {{ cmd }}
             </button>
         {% endfor %}

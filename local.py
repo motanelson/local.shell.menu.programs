@@ -68,6 +68,10 @@ HTML_RESULT = """
 
 @app.route("/", methods=["GET"])
 def index():
+    # Verificar se vem de localhost (IPv4 ou IPv6)
+    if request.remote_addr not in ["127.0.0.1", "::1"]:
+        return "Acesso negado: apenas localhost pode executar comandos.", 403
+
     return render_template_string(HTML_MENU, commands=COMMANDS)
 
 @app.route(num1, methods=["POST"])
